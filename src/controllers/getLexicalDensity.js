@@ -14,15 +14,17 @@ const getLexicalDensity = (str, nonLexicalArr) => {
     return false;
 
   //  Make string an array of lower case letters and remove punctuations.
-  let processInput = str  
-  .toLowerCase()
+  let processInput = str
+    .trim()
+    .toLowerCase()
     .replace(/[~`!@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=-]/g, ``)
-    .split(" ");
+    .split(" ")
+    .filter(item => item !== "");
 
+  console.log(processInput);
   if (processInput.length > 100) {
     return false;
   } else {
-      
     //  Record the initial word count for comparison to the filtered result.
     const wordCount = processInput.length;
 
