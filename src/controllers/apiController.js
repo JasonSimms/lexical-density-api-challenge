@@ -30,23 +30,27 @@ exports.calculate = function(req, res) {
 };
 
 exports.calculateVerbose = function(req, res) {
+  console.log(`calculating verbose LD!*****`)
   let overall_ld;
+  let sentence_ld = [];
   let { userInput } = req.body;
   if (!userInput) res.status(400).send({ error: "No userInput Recieved." });
   splitInput = userInput.match(/[^\.!\?]+[\.!\?]+/g);
-  // Bugged
-  splitInput.forEach(element => {
-    let sentence_ld;
-    Word.find({}).then(words => {
-      let nonLexicalWords = words.map(el => el.term);
+  
+  Word.find({}).then(words => {
+    let nonLexicalWords = words.map(el => el.term);
+
+    // Call LD calculator for each sentence in splitInput.
+    splitInput.forEach(element => {
       sentence_ld.push(getLD(element, nonLexicalWords));
     });
-    // overall_ld = sentence_ld.reduce((a, b) => a + b, 0) / sentence_ld.length;
+
+    // Calculate the average of Lexical Density
+    overall_ld = sentence_ld.reduce((a,b)=> a+b, 0)/ sentence_ld.length;
+   
+    // Return requested data
     res.json({
-      data: {
-        sentence_ld
-        // overall_ld
-      }
+      data: { sentence_ld, overall_ld }
     });
   });
 };

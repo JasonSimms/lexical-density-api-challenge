@@ -13,7 +13,7 @@ Requires: node and mongoDB
 with a body key "userInput" 
 & a value of a single sentance string.
 
-- endpoint http://localhost:3000/api/complexity/verbose will handle paragraph inputs after some debugging.
+- endpoint http://localhost:3000/api/complexity/verbose will handle paragraph inputs and seperate your userInput to sentences.
 
 
 

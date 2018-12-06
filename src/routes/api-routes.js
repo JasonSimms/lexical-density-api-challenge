@@ -7,7 +7,8 @@ let router = require("express").Router();
 router.get("/", function(req, res) {
   res.json({
     status: `Api is OK`,
-    message: `Welcome to Lexical Density Calculator`
+    message: `Welcome to Lexical Density Calculator`,
+    instructions: `please submit a post request with key userInput`
   });
 });
 
