@@ -4,21 +4,35 @@
 const wordList = require("../bin/nonLexicalWords");
 
 const getLexicalDensity = (str, nonLexicalArr) => {
-  console.log(`input: `, str.length, `NLD wordlist length: `, nonLexicalArr.length);
-  let processStr = str.split(" ");
-  console.log('processStr: ',processStr.length)
-  if (str.length > 1000 || processStr.length > 100) {
+  // Handle improper inputs
+  if (
+    str.length > 1000 ||
+    typeof str !== "string" ||
+    !nonLexicalArr ||
+    str.length < 1
+  )
+    return false;
+
+  //  Make string an array of lower case letters and remove punctuations.
+  let processInput = str
+    .toLowerCase()
+    .replace(/[~`!@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=-]/g, ``)
+    .split(" ");
+
+  if (processInput.length > 100) {
     return false;
   } else {
-    return processStr.length;
+      
+    //  Record the initial word count for comparison to the filtered result.
+    const wordCount = processInput.length;
+
+    // Filter processInput against library of nonLexicalWords array.
+    let result = processInput.filter(word => !nonLexicalArr.includes(word));
+    let overall_ld = Number((result.length / wordCount).toFixed(2));
+    return overall_ld;
   }
 };
 
-getLexicalDensity("greetings", wordList);
-
-const toManyWords =
-  "this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words this is not 5 words";
-
-getLexicalDensity(toManyWords, wordList);
+// getLexicalDensity("Kim loves going to the movies", wordList);
 
 module.exports = getLexicalDensity;
