@@ -1,6 +1,23 @@
 # Lexical Density Api by Jason Simms
 
-## Requirements: 
+
+# To Use:
+Requires: node and mongoDB
+
+1. clone this repository
+2. cd lexical-density && npm install
+3. with a local mongoDB instance running - $ npm run seed
+4. npm start
+
+5.  Make a post request to : http://localhost:3000/api/complexity/
+with a body key "userInput" 
+& a value of a single sentance string.
+
+- endpoint http://localhost:3000/api/complexity/verbose will handle paragraph inputs after some debugging.
+
+
+
+## Project Requirements: 
 Route / complexity calculates complexity of a string
 - output: {"data": {
     overall_ld: 0.42
