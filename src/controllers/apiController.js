@@ -33,19 +33,19 @@ exports.calculateVerbose = function(req, res) {
   let overall_ld;
   let { userInput } = req.body;
   if (!userInput) res.status(400).send({ error: "No userInput Recieved." });
-  userInput = userInput.match(/[^\.!\?]+[\.!\?]+/g);
-  console.log(userInput.length,typeof(userInput),userInput)
-  // Bug: userINPUT.match is RETURNING an object needs to be an array to work with the function!
-  Word.find({}).then(words => {
+  splitInput = userInput.match(/[^\.!\?]+[\.!\?]+/g);
+  // Bugged
+  splitInput.forEach(element => {
     let sentence_ld;
-    let nonLexicalWords = words.map(el => el.term);
-    userInput.forEach(element => {
+    Word.find({}).then(words => {
+      let nonLexicalWords = words.map(el => el.term);
       sentence_ld.push(getLD(element, nonLexicalWords));
     });
     // overall_ld = sentence_ld.reduce((a, b) => a + b, 0) / sentence_ld.length;
     res.json({
-      data: { sentence_ld, 
-        // overall_ld 
+      data: {
+        sentence_ld
+        // overall_ld
       }
     });
   });
