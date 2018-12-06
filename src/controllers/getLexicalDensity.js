@@ -21,7 +21,6 @@ const getLexicalDensity = (str, nonLexicalArr) => {
     .split(" ")
     .filter(item => item !== "");
 
-  console.log(processInput);
   if (processInput.length > 100) {
     return false;
   } else {

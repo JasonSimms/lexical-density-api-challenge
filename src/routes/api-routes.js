@@ -22,6 +22,10 @@ router
   .get(apiController.getWords)
   .post(apiController.calculate);
 
+  router
+  .route("/complexity/verbose")
+  .post(apiController.calculateVerbose);
+
 
 
 // Export API routes
