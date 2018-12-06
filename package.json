@@ -4,6 +4,8 @@
   "description": "An API calculating lexical density of a string using mongoDB",
   "main": "index.js",
   "scripts": {
+    "start" : "node index.js",
+    "dev" : "nodemon index.js",
     "test": "jest"
   },
   "repository": {
