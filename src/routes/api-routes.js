@@ -16,11 +16,13 @@ const apiController = require(`../controllers/apiController`);
 
 
 
-// Word routes
+// complexity routes
 router
   .route("/complexity")
   .get(apiController.getWords)
-  // .post(dbController.calculate);
+  .post(apiController.calculate);
+
+
 
 // Export API routes
 module.exports = router;

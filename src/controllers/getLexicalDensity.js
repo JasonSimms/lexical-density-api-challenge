@@ -14,8 +14,8 @@ const getLexicalDensity = (str, nonLexicalArr) => {
     return false;
 
   //  Make string an array of lower case letters and remove punctuations.
-  let processInput = str
-    .toLowerCase()
+  let processInput = str  
+  .toLowerCase()
     .replace(/[~`!@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=-]/g, ``)
     .split(" ");
 
